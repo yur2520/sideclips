@@ -11,6 +11,14 @@
             src: url('./SUITE-Variable.woff2') format('woff2-variations');
         }
 
+        hr {
+            border: none;
+            
+            border-top: 1px solid #ccc;
+            /* 얇은 회색 선 추가 */
+            margin: 10px;            
+        }
+
         .card {
             background-color: #fff;
             padding: 20px;
@@ -18,7 +26,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             text-align: center;
-             /* 카드의 기본 너비 width: 320px; */
+            /* 카드의 기본 너비 width: 320px; */
             box-sizing: border-box;
         }
 
@@ -113,26 +121,127 @@
             margin-bottom: 10px;
         }
 
-        #unlock-button {
+        button {
+            font-family: 'SUITE Variable', sans-serif;
             padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            background-color: #f0f0f0;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-          #settings-button {
-        position: absolute; top: 10px; right: 10px;
-        background: none; border: none; font-size: 20px; cursor: pointer;
-    }
-    #settings-view { display: none; padding: 10px; }
-    .settings-item { margin-bottom: 20px; }
-    .settings-item label { display: block; margin-bottom: 5px; font-weight: bold; }
-    .settings-item input[type="password"] { width: 95%; padding: 8px; }
-    .settings-item p { font-size: 12px; color: #666; margin: 5px 0 0 0; }
-    
-    /* 토글 스위치 스타일 */
-    .switch { position: relative; display: inline-block; width: 44px; height: 24px; }
-    .switch input { opacity: 0; width: 0; height: 0; }
-    .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px; }
-    .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
-    input:checked + .slider { background-color: #2196F3; }
-    input:checked + .slider:before { transform: translateX(20px); }
+
+        button:hover {
+            background-color: #c8d5e4;
+        }
+
+        #unlock-button {
+            font-family: 'SUITE Variable', sans-serif;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+        }
+
+        #settings-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #f0f0f000;
+            padding: 2px;
+            border: none;
+            border-radius: 20px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        #settings-button:hover {
+            background-color: #cfd5db;
+            /* 마우스를 올렸을 때 버튼의 색상을 변경합니다. */
+        }
+
+        #settings-view {
+            display: none;
+            padding: 10px;
+        }
+
+        .settings-item-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .settings-item {
+            margin-bottom: 20px;
+        }
+
+        .settings-item label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .settings-item input[type="password"] {
+            width: 95%;
+            padding: 8px;
+        }
+
+        .settings-item p {
+            font-size: 12px;
+            color: #666;
+            margin: 5px 0 0 0;
+        }
+
+        /* 토글 스위치 스타일 */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(20px);
+        }
+
+        a {
+            color: #455a6d;
+            text-decoration: none;
+        }
     </style>
 </head>
 
@@ -145,45 +254,54 @@
     </div>
 
     <div id="main-content" style="display: none;">
-        <button id="settings-button">⚙️</button>
+        <button id="settings-button">
+            <img src="icons/setting32.png" alt="설정" style="width: 24px; height: 24px; vertical-align: middle;">
+        </button>
         <h3>내 클립보드</h3>
         <textarea id="dataInput" placeholder="여기에 데이터를 붙여넣으세요 (Ctrl+V)"></textarea>
         <ul id="dataList"></ul>
     </div>
 
     <div id="settings-view">
-        
+
         <button id="back-button" style="margin-bottom: 5px;">← 뒤로</button>
 
         <div class="card">
-        <h3>설정</h3>
-        <div class="settings-item">
-            <label for="lock-toggle">암호화 잠금 사용</label>
-            <label class="switch">
-                <input type="checkbox" id="lock-toggle">
-                <span class="slider"></span>
-            </label>
-        </div>
-        <div class="settings-item">
-            <label for="new-password">비밀번호 재설정</label>
-            <input type="password" id="current-password" placeholder="현재 비밀번호">
-            <input type="password" id="new-password" placeholder="새 비밀번호" style="margin-top: 5px;">
-            <p>규칙: 4~16자, 특수문자 사용 가능</p>
-            <button id="change-password-button" style="margin-top: 10px;">변경하기</button>
-        </div>
-        <p id="settings-message-area" style="font-size: 12px;"></p>
+            <h3>설정</h3>
+            <hr>
+            <div class="settings-item-row">
+                <label for="lock-toggle">암호화 잠금 사용</label>
+                <label class="switch">
+                    <input type="checkbox" id="lock-toggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="settings-item">
+                <label for="new-password">비밀번호 재설정</label>
+                <input type="password" id="current-password" placeholder="현재 비밀번호">
+                <input type="password" id="new-password" placeholder="새 비밀번호" style="margin-top: 5px;">
+                <p>규칙: 4~16자, 특수문자 사용 가능</p>
+                <button id="change-password-button" style="margin-top: 10px;">변경하기</button>
+            </div>
+            <p id="settings-message-area" style="font-size: 12px;"></p>
         </div>
 
-          <div class="card">
-        <h3>확장 프로그램 정보</h3>
-        <p>버전: 1.0.0</p>
+        <div class="card">
+            <h3>확장 프로그램 정보</h3>
+            <hr>
+            <p>버전: 1.0.0</p>
+            <a href="https://www.flaticon.com/free-icons/clipboard" title="clipboard icons">Clipboard icons created by
+                Arkinasi - Flaticon</a>
+            <a href="https://www.flaticon.com/free-icons/setting" title="setting icons">Setting icons created by Phoenix
+                Group - Flaticon</a>
         </div>
 
 
     </div>
 
     <script src="crypto.js"></script>
-    <script src="sidepanel.js"></script>
+    <script src="storage.js"></script>
+    <script src="ui.js"></script>
 </body>
 
 </html>
