@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "나만의 사이드 클립보드",
+  "version": "1.0",
+  "description": "원하는 데이터를 사이드 패널에 저장하고 간편하게 복사하세요.",
+  "permissions": ["sidePanel", "storage", "clipboardWrite"],
+  "action": {
+    "default_title": "사이드 클립보드 열기"
+  },
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  }
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>사이드 클립보드</title>
+    <style>
+        /* 간단한 스타일을 추가해 보기 좋게 만듭니다. */
+        body { font-family: sans-serif; padding: 10px; }
+        h3 { margin-top: 0; }
+        textarea { width: 95%; height: 80px; margin-bottom: 10px; }
+        #dataList { list-style: none; padding: 0; }
+        #dataList li {
+            padding: 10px;
+            margin-bottom: 5px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            cursor: pointer;
+            word-wrap: break-word; /* 긴 텍스트가 넘치지 않도록 설정 */
+        }
+        #dataList li:hover { background-color: #e0e0e0; }
+        
+        #dataList img {
+        max-width: 100%; /* 이미지가 부모 요소를 넘어가지 않도록 설정 */
+        border-radius: 4px;
+        display: block;
+    }
+    </style>
+</head>
+<body>
+    <h3>내 클립보드</h3>
+    <textarea id="dataInput" placeholder="여기에 데이터를 붙여넣으세요 (Ctrl+V)"></textarea>
+    <ul id="dataList"></ul>
+
+    <script src="sidepanel.js"></script>
+</body>
+</html>
