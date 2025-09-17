@@ -70,6 +70,16 @@
             /* 불필요한 여백 제거 */
         }
 
+        #dataList pre > code { /* 코드 블록 스타일 추가 */
+            display: block;
+            background-color: #2d2d2d;
+            color: #f0f0f0;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 11px;
+        }
+
         #dataList li {
 
             padding: 10px;
@@ -242,10 +252,65 @@
             color: #455a6d;
             text-decoration: none;
         }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none; /* 평소에는 숨김 */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            width: 85%;
+            text-align: center;
+        }
+        .modal-content p { margin: 0 0 15px 0; }
+        .modal-content input { width: 90%; padding: 8px; margin-bottom: 15px; }
+        .modal-content button { margin: 0 5px; }
+          #storage-usage {
+            margin: 15px 10px 5px 10px;
+            font-size: 12px;
+            color: #666;
+        }
+        #storage-progress-bar-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            height: 10px;
+            overflow: hidden;
+        }
+        #storage-progress-bar {
+            width: 0%; /* JS로 너비 조절 */
+            height: 100%;
+            background-color: #4caf50;
+            border-radius: 10px;
+            transition: width 0.5s ease-in-out;
+        }
     </style>
 </head>
 
 <body>
+    
+     <div id="custom-modal" class="modal-overlay">
+        <div class="modal-content">
+            <p id="modal-message"></p>
+            <input type="password" id="modal-input" style="display: none;">
+            <div id="modal-buttons">
+                <button id="modal-ok">확인</button>
+                <button id="modal-cancel" style="display: none;">취소</button>
+            </div>
+        </div>
+    </div>
+
     <div id="lock-screen">
         <h3>마스터 비밀번호</h3>
         <input type="password" id="password-input" placeholder="비밀번호를 입력하세요">
@@ -258,9 +323,23 @@
             <img src="icons/setting32.png" alt="설정" style="width: 24px; height: 24px; vertical-align: middle;">
         </button>
         <h3>내 클립보드</h3>
+
+        <div id="storage-usage">
+            <p id="storage-text" style="margin: 0 0 5px 0;"></p>
+            <div id="storage-progress-bar-container">
+                <div id="storage-progress-bar"></div>
+            </div>
+        </div>
+
         <textarea id="dataInput" placeholder="여기에 데이터를 붙여넣으세요 (Ctrl+V)"></textarea>
+        
+
         <ul id="dataList"></ul>
-    </div>
+
+    </div>    
+        
+
+
 
     <div id="settings-view">
 
@@ -298,10 +377,11 @@
 
 
     </div>
-
+    
     <script src="crypto.js"></script>
     <script src="storage.js"></script>
-    <script src="ui.js"></script>
+    <script src="view.js"></script> 
+    <script src="events.js"></script> 
 </body>
 
 </html>

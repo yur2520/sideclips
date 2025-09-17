@@ -10,7 +10,7 @@ async function getKey(password, salt) {
         new TextEncoder().encode(password),
         { name: "PBKDF2" },
         false,
-        ["deriveKey"]
+        ['deriveBits', 'deriveKey']
     );
     return crypto.subtle.deriveKey(
         {

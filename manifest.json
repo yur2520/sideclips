@@ -3,7 +3,8 @@
   "name": "사이드 클립보드",
   "version": "1.0.0",
   "description": "원하는 데이터를 사이드 패널에 저장하고 간편하게 복사하세요.",
-  "permissions": ["sidePanel", "storage", "clipboardWrite"],
+  "permissions": ["sidePanel", "storage", "clipboardWrite", "clipboardRead"],
+  "host_permissions": ["<all_urls>"],
   "action": {
     "default_title": "사이드 클립보드 열기",
      "default_icon": {
