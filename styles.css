@@ -1,0 +1,96 @@
+@font-face {
+    font-family: 'SUITE Variable';
+    font-weight: 300 900;
+    src: url('./SUITE-Variable.woff2') format('woff2-variations');
+}
+
+@font-face {
+    font-family: 'Goorm Sans Code';
+    font-weight: 300 900;
+    src: url('./goorm-sans-code.woff2') format('woff2-variations');
+}
+
+
+
+/*용량표시*/
+#storage-usage {
+    margin: 6px 10px 10px 2px;
+    font-size: 12px;
+    color: #666;
+}
+
+#storage-progress-bar-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    height: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+#storage-progress-bar {
+    width: 0%;
+    /* JS로 너비 조절 */
+    height: 100%;
+    background-color: #4caf50;
+    border-radius: 10px;
+    transition: width 0.5s ease-in-out;
+}
+
+
+
+
+/*버튼*/
+
+button {
+    font-family: 'SUITE Variable', sans-serif;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button:hover {
+    background-color: #c8d5e4;
+}
+
+#unlock-button {
+    font-family: 'SUITE Variable', sans-serif;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+}
+
+#settings-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #f0f0f000;
+    padding: 2px;
+    border: none;
+    border-radius: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#settings-button:hover {
+    background-color: #cfd5db;    
+}
+
+
+
+/*구분선, 링크*/
+hr {
+    border: none;
+    border-top: 1px solid #ccc;   
+    margin: 10px 0px;
+}
+
+a {
+    color: #455a6d;
+    text-decoration: none;
+}
+
+/*폼 스타일*/

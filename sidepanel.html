@@ -3,28 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="styles.css">
     <title>사이드 클립보드</title>
     <style>
-        @font-face {
-            font-family: 'SUITE Variable';
-            font-weight: 300 900;
-            src: url('./SUITE-Variable.woff2') format('woff2-variations');
-        }
-
-        @font-face {
-            font-family: 'Goorm Sans Code';
-            font-weight: 300 900;
-            src: url('./goorm-sans-code.woff2') format('woff2-variations');
-        }
-
-        hr {
-            border: none;
-            
-            border-top: 1px solid #ccc;
-            /* 얇은 회색 선 추가 */
-            margin: 10px 0px;            
-        }
-
         .card {
             background-color: #fff;
             padding: 20px;
@@ -50,7 +32,16 @@
             width: 95%;
             height: 80px;
             margin-bottom: 10px;
+            border-radius: 6px;
+            border: 1px solid rgb(85, 85, 85);
         }
+
+        textarea:focus {
+           border:2px solid rgb(98, 163, 216);
+           outline: none;
+        }
+
+        
 
         #dataList {
             font-family: 'SUITE Variable', sans-serif;
@@ -77,7 +68,8 @@
             /* 불필요한 여백 제거 */
         }
 
-        #dataList pre > code { /* 코드 블록 스타일 추가 */
+        #dataList pre>code {
+            /* 코드 블록 스타일 추가 */
             display: block;
             background-color: #2d2d2d;
             color: #f0f0f0;
@@ -136,45 +128,10 @@
             padding: 8px;
             width: 80%;
             margin-bottom: 10px;
+            border-radius: 6px;
         }
 
-        button {
-            font-family: 'SUITE Variable', sans-serif;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 20px;
-            background-color: #f0f0f0;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
 
-        button:hover {
-            background-color: #c8d5e4;
-        }
-
-        #unlock-button {
-            font-family: 'SUITE Variable', sans-serif;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 20px;
-        }
-
-        #settings-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #f0f0f000;
-            padding: 2px;
-            border: none;
-            border-radius: 20px;
-            font-size: 20px;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        #settings-button:hover {
-            background-color: #cfd5db;
-            /* 마우스를 올렸을 때 버튼의 색상을 변경합니다. */
-        }
 
         #settings-view {
             display: none;
@@ -255,10 +212,7 @@
             transform: translateX(20px);
         }
 
-        a {
-            color: #455a6d;
-            text-decoration: none;
-        }
+
 
         .modal-overlay {
             position: fixed;
@@ -267,48 +221,41 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
-            display: none; /* 평소에는 숨김 */
+            display: none;
+            /* 평소에는 숨김 */
             justify-content: center;
             align-items: center;
             z-index: 1000;
         }
+
         .modal-content {
             background-color: white;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             width: 85%;
             text-align: center;
         }
-        .modal-content p { margin: 0 0 15px 0; }
-        .modal-content input { width: 90%; padding: 8px; margin-bottom: 15px; }
-        .modal-content button { margin: 0 5px; }
-          #storage-usage {
-            margin: 15px 10px 5px 10px;
-            font-size: 12px;
-            color: #666;
+
+        .modal-content p {
+            margin: 0 0 15px 0;
         }
-        #storage-progress-bar-container {
-            width: 100%;
-            background-color: #e0e0e0;
-            border-radius: 10px;
-            height: 10px;
-            margin-bottom: 10px;
-            overflow: hidden;
+
+        .modal-content input {
+            width: 90%;
+            padding: 8px;
+            margin-bottom: 15px;
         }
-        #storage-progress-bar {
-            width: 0%; /* JS로 너비 조절 */
-            height: 100%;
-            background-color: #4caf50;
-            border-radius: 10px;
-            transition: width 0.5s ease-in-out;
+
+        .modal-content button {
+            margin: 0 5px;
         }
     </style>
 </head>
 
 <body>
-    
-     <div id="custom-modal" class="modal-overlay">
+
+    <div id="custom-modal" class="modal-overlay">
         <div class="modal-content">
             <p id="modal-message"></p>
             <input type="password" id="modal-input" style="display: none;">
@@ -333,19 +280,19 @@
         <h3>내 클립보드</h3>
 
         <div id="storage-usage">
-            <p id="storage-text" style="margin: 0 0 5px 0;"></p>
+            <p id="storage-text" style="margin: 0px 0px 1px 0;"></p>
             <div id="storage-progress-bar-container">
                 <div id="storage-progress-bar"></div>
             </div>
         </div>
 
-        <textarea id="dataInput" placeholder="여기에 데이터를 붙여넣으세요 (Ctrl+V)"></textarea>
-        
+        <textarea id="dataInput" placeholder="여기에 데이터를 붙여넣으세요 (Ctrl+V)" ></textarea>
+
 
         <ul id="dataList"></ul>
 
-    </div>    
-        
+    </div>
+
 
 
 
@@ -385,11 +332,11 @@
 
 
     </div>
-    
+
     <script src="crypto.js"></script>
     <script src="storage.js"></script>
-    <script src="view.js"></script> 
-    <script src="events.js"></script> 
+    <script src="view.js"></script>
+    <script src="events.js"></script>
 </body>
 
 </html>
