@@ -38,9 +38,9 @@ async function disableEncryption(key) {
             items = await decrypt(encryptedStr, key);
         }
         
-        // 복호화된 데이터를 그대로 저장하고, 암호화 정보는 삭제
+        // 복호화된 데이터를 그대로 저장
         await setStorageData({ savedData: items, useLock: false });
-        await removeStorageData(['salt', 'verification']);
+        //암호화하는 솔트 삭제하는 로직 await removeStorageData(['salt', 'verification']);
         return true;
     } catch (error) {
         console.error('암호화 비활성화 오류:', error);

@@ -11,12 +11,18 @@
             src: url('./SUITE-Variable.woff2') format('woff2-variations');
         }
 
+        @font-face {
+            font-family: 'Goorm Sans Code';
+            font-weight: 300 900;
+            src: url('./goorm-sans-code.woff2') format('woff2-variations');
+        }
+
         hr {
             border: none;
             
             border-top: 1px solid #ccc;
             /* 얇은 회색 선 추가 */
-            margin: 10px;            
+            margin: 10px 0px;            
         }
 
         .card {
@@ -48,6 +54,7 @@
 
         #dataList {
             font-family: 'SUITE Variable', sans-serif;
+            font-size: 12px;
             list-style: none;
             padding: 0;
         }
@@ -65,7 +72,7 @@
 
 
             font-family: 'SUITE Variable', sans-serif;
-            font-size: 12px;
+            font-size: 13px;
             margin: 0;
             /* 불필요한 여백 제거 */
         }
@@ -76,12 +83,12 @@
             color: #f0f0f0;
             padding: 10px;
             border-radius: 4px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 11px;
+            font-family: 'Goorm Sans Code', 'Courier New', Courier, monospace;
+            font-size: 12px;
         }
 
         #dataList li {
-
+            font-size: 12px;
             padding: 10px;
             margin-bottom: 5px;
             background-color: #f0f0f0;
@@ -241,7 +248,7 @@
         }
 
         input:checked+.slider {
-            background-color: #2196F3;
+            background-color: #3379b3;
         }
 
         input:checked+.slider:before {
@@ -286,6 +293,7 @@
             background-color: #e0e0e0;
             border-radius: 10px;
             height: 10px;
+            margin-bottom: 10px;
             overflow: hidden;
         }
         #storage-progress-bar {
